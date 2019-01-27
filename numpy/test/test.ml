@@ -1,7 +1,9 @@
 open! Base
 open! Expect_test_helpers_kernel
 
-let () = Py.initialize ()
+let () = 
+  if not (Py.is_initialized ())
+  then Py.initialize ()
 
 let%expect_test "of_bigarray" =
   (match Py.Import.try_import_module "numpy" with

@@ -15,5 +15,6 @@
  (public_name pyml)
  (wrapped false)
  (c_names pyml_stubs)
+ (install_c_headers pyml_stubs)
  (flags (:standard -w -50-32-27-37))
  (libraries stdcompat unix))
