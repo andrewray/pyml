@@ -1,0 +1,4 @@
+(executable
+ (name export_to_python)
+ (libraries pyml)
+ (modes (native shared_object)))
