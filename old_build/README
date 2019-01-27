@@ -1,0 +1,7 @@
+This directory contains files related to the pre-dune build system.
+
+It is required to keep it available until some upstream projects are able to 
+convert to dune.  The approach taken here is to keep some deprecated files in 
+this 'old_build' directory then reconstruct the prior file system layout using 
+some a 'setup' rule in the Makefile.  This is probably not hugely maintainable 
+over the long term, but I think suffices for now.

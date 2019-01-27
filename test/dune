@@ -1,0 +1,5 @@
+(library
+  (name pyml_tests)
+  (libraries base expect_test_helpers_kernel pyml)
+  (inline_tests)
+  (preprocess (pps ppx_here ppx_sexp_message ppx_expect)))

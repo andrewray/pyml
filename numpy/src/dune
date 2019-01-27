@@ -1,0 +1,6 @@
+(library
+ (name numpy)
+ (public_name pyml.numpy)
+ (flags (:standard -w -32))
+ (c_names numpy_stubs)
+ (libraries pyml))

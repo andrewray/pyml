@@ -1,0 +1,19 @@
+(rule
+ (targets pyml_arch.ml)
+ (deps (:ml pyml_arch.cppo.ml))
+ (action
+  (chdir %{project_root}
+   (run %{bin:cppo} -D %{ocaml-config:system} %{ml} -o %{targets}))))
+
+(rule
+  (targets pyml_wrappers.inc pyml_dlsyms.inc pyml.h pywrappers.ml)
+  (deps generate/generate.exe)
+  (action (run generate/generate.exe)))
+
+(library
+ (name pyml)
+ (public_name pyml)
+ (wrapped false)
+ (c_names pyml_stubs)
+ (flags (:standard -w -50-32-27-37))
+ (libraries stdcompat unix))

@@ -1,0 +1,19 @@
+opam-version: "2.0"
+version: "dev"
+maintainer: "Thierry Martinez <martinez@nsup.org>"
+authors: "Thierry Martinez <martinez@nsup.org>"
+homepage: "http://github.com/thierry-martinez/pyml/issues"
+bug-reports: "http://github.com/thierry-martinez/pyml/issues"
+license: "BSD"
+dev-repo: "git://github.com/thierry-martinez/pyml.git"
+synopsis: "OCaml binding for Python C-api"
+build: [
+  ["dune" "build" "-p" name "-j" jobs]
+]
+depends: [
+  "ocaml" { >= "3.12.1" & < "4.08.0" }
+  "dune" {build}
+  "cppo"
+  "stdcompat" {>= "3"}
+  "num"
+]

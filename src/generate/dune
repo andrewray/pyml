@@ -1,0 +1,4 @@
+(executables
+ (names generate)
+ (flags (:standard -w -27))
+ (libraries stdcompat))

@@ -142,6 +142,33 @@ ifneq ($(HAVE_UTOP),no)
 	@echo Run \`make pymlutop\' to build the utop toplevel.
 endif
 
+FILES_TO_COPY=\
+	../src/generate/generate.ml \
+	../numpy/src/numpy.ml \
+	../numpy/src/numpy.mli \
+	../numpy/src/numpy_stubs.c \
+	../src/py.ml \
+	../src/py.mli \
+	../src/pycaml.ml \
+	../src/pycaml.mli \
+	../src/pyml_arch.mli \
+	../src/pyml_stubs.c \
+	../src/pyml_stubs.h \
+	../src/pyops.ml \
+	../src/pyops.mli \
+	../src/pytypes.ml \
+	../src/pytypes.mli \
+	../src/pyutils.ml \
+	../src/pyutils.mli
+
+COPIED_FILES=$(notdir $(FILES_TO_COPY))
+
+# Copy source files to match the organisation required by this Makefile
+$(COPIED_FILES): $(FILES_TO_COPY)
+	cp $(FILES_TO_COPY) .
+
+setup: $(COPIED_FILES)
+
 .PHONY : help
 help :
 	@echo make [all] : build the library
@@ -171,10 +198,10 @@ endif
 	@echo make STDCOMPAT=... : set path to the stdcompat library
 
 .PHONY : all.bytecode
-all.bytecode : pyml.cma numpy.cma
+all.bytecode : setup pyml.cma numpy.cma
 
 .PHONY : all.native
-all.native : pyml.cmxa pyml.cmxs numpy.cmxa numpy.cmxs
+all.native : setup pyml.cmxa pyml.cmxs numpy.cmxa numpy.cmxs
 
 .PHONY : tests
 tests : tests.bytecode $(TESTSOPT)
@@ -224,6 +251,7 @@ clean :
 	rm -rf doc
 	rm -f pymltop pytop.cmo pymlutop pyutop.cmo
 	rm -f pymltop_libdir.ml pymltop_libdir.cmo
+	rm -f $(COPIED_FILES)
 
 .PHONY : tarball
 tarball :
